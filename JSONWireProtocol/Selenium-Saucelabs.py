@@ -121,29 +121,29 @@ elif region == 'APAC':
 # Test logic goes here
 ###################################################################
 # Navigating to a website
-driver.get('https://seeker.snagqa.com/search')
-driver.find_element_by_css_selector("[data-snagtag=\"app-header\"]")
-signin = driver.find_element_by_css_selector("[data-snagtag=\"sign-in\"]")
-sleep(3)
-signin.click()
-driver.find_element_by_css_selector("subnav-item")
-workers = driver.find_element_by_css_selector("[data-snagtag=\"workers\"]")
-sleep(3)
-workers.click()
-childWindow = driver.window_handles[0]
-#to switch focus the first child window handle
-driver.switch_to.window(childWindow)
-# driver.find_element_by_css_selector("social-register-modal")
-driver.find_element_by_css_selector("[data-snagtag=\"userid\"]").send_keys("newseeker_6636757@snagatest.com")
-driver.find_element_by_css_selector("button[data-snagtag=\"signin\"]").click()
+driver.get('https://www.google.com')
+sleep(5)
 
-# driver.find_element_by_css_selector("social-register-modal")
-childWindow = driver.window_handles[0]
-#to switch focus the first child window handle
-driver.switch_to.window(childWindow)
-driver.find_element_by_css_selector("[data-snagtag=\"psw\"]").send_keys("1234567890")
-# driver.find_element_by_css_selector("social-register-modal")
-driver.find_element_by_css_selector("button[data-snagtag=\"signin\"]").click()
+# Finding an element
+interact = driver.find_element_by_name('q')
+
+# Using the selected element
+interact.send_keys('chupacabra')
+interact.submit()
+
+sleep(5)
+
+# interact.click()
+
+# Saving an extra screenshot
+# driver.save_screenshot('screenshot.png')
+
+# Using Action chains
+# ActionChains(driver).move_to_element(interact).perform()
+
+# Sauce Labs specific executors
+# driver.execute_script('sauce: break')
+# driver.execute_script('sauce:context=Notes here')
 
 # Setting the job status to passed
 driver.execute_script('sauce:job-result=passed')
