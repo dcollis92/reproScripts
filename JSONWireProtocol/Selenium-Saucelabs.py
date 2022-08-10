@@ -128,7 +128,7 @@ sleep(5)
 interact = driver.find_element_by_name('q')
 
 # Using the selected element
-interact.send_keys('chupacabra')
+interact.send_keys('puppies')
 interact.submit()
 
 sleep(5)
