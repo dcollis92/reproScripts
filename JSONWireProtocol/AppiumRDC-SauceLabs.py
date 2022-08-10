@@ -141,8 +141,7 @@ except NameError:
 if region != 'EU':
     print(Fore.MAGENTA + 'You are using the US data center for an RDC test, so a bald eagle is obviously running your tests.' + Style.RESET_ALL)
     driver = webdriver.Remote(
-        command_executor='https://arun.prakash:3a587203-355d-41f3-981c-cabaf068a962@ondemand.us-west-1.saucelabs.com:443/wd/hub',
-        # command_executor='https://'+os.environ['SAUCE_USERNAME']+':'+os.environ['SAUCE_ACCESS_KEY']+'@ondemand.us-west-1.saucelabs.com:443/wd/hub',
+        command_executor='https://'+os.environ['SAUCE_USERNAME']+':'+os.environ['SAUCE_ACCESS_KEY']+'@ondemand.us-west-1.saucelabs.com:443/wd/hub',
         desired_capabilities=sauceParameters)
 elif region == 'EU':
     print (Fore.CYAN + 'You are using the EU data center for an RDC test, you beautiful tropical fish!' + Style.RESET_ALL)

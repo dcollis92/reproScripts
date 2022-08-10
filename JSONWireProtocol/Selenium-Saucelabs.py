@@ -104,8 +104,7 @@ except NameError:
 if region == 'US':
     print(Fore.MAGENTA + 'You are using the US data center for a Desktop test, rockstar!' + Style.RESET_ALL)
     driver = webdriver.Remote(
-        command_executor='https://saj-runner-bot:f032a72b-7c7e-41a2-9b96-eefe715486d1@ondemand.us-west-1.saucelabs.com:443/wd/hub',
-        # command_executor='https://'+os.environ['SAUCE_USERNAME']+':'+os.environ['SAUCE_ACCESS_KEY']+'@ondemand.us-west-1.saucelabs.com:443/wd/hub',
+        command_executor='https://'+os.environ['SAUCE_USERNAME']+':'+os.environ['SAUCE_ACCESS_KEY']+'@ondemand.us-west-1.saucelabs.com:443/wd/hub',
         desired_capabilities=sauceParameters)
 elif region == 'EU':
     print (Fore.CYAN + 'You are using the EU data center for a Desktop test, you beautiful tropical fish!' + Style.RESET_ALL)
