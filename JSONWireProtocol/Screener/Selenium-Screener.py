@@ -9,6 +9,10 @@ from selenium import webdriver
 from time import sleep
 import os
 import urllib3
+import json
+import random
+from colorama import Fore, Back, Style
+
 
 ###################################################################
 # Selenium with Python doesn't like using HTTPS correctly
@@ -21,70 +25,59 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 ###################################################################
 # Common parameters (desired capabilities)
 ###################################################################
-capabilities = {
+sauceParameters = {
     # These Screener capablities are required. You'll find the apiKey and group name in the Screener.io dashboard
     'browserName': 'chrome',
     'browserVersion': '102.0',
     'sauce:visual': {
         'apiKey': '5555d962-5e7d-491e-b319-4c578c1cdd7b',        # 'group': os.environ['SCREENER_GROUP_KEY'],
-        'projectName': 'exampleTest',
+        'projectName': 'puppyTest',
         'viewportSize': '1280x1024'
     },
     'sauce:options': {
         'username' : os.environ['SAUCE_USERNAME'],
         'accessKey': os.environ['SAUCE_ACCESS_KEY'],
     }
-
-
-    # Browser Specific Options
-    # 'chromeOptions':{
-    #     'mobileEmulation':{'deviceName':'iPhone X'},
-    #     'prefs': {
-    #         'profile': {
-    #             'password_manager_enabled': 'false',
-    #             },
-    #             'credentials_enable_service': 'false',
-    #         },
-    #     'args': ['test-type', 'disable-infobars'],
-    # },
-
-    # 'moz:firefoxOptions':{
-    #     'log': {'level': 'trace'},
-    # },
 }
-
+print(type(sauceParameters))
 ###################################################################
 # Connect to Screener
 ###################################################################
-command_executor = 'https://hub.screener.io/wd/hub',
+# command_executor = 'https://hub.screener.io/wd/hub',
 
-driver = webdriver.Remote(command_executor, capabilities)
-# self.driver = webdriver.Remote(host, capabilities)
+
+driver = webdriver.Remote(
+    desired_capabilities=sauceParameters,
+    command_executor='https://hub.screener.io/wd/hub'
+    )
+    # self.driver = webdriver.Remote(host, capabilities)
 
 ###################################################################
 # Test logic goes here
 ###################################################################
 # Navigating to a website
-def test_take_snapshot(self):
-  driver.get('https://screener.io')
-  driver.execute_script('/*@visual.init*/', 'My Visual Test')
-  driver.execute_script('/*@visual.snapshot*/', 'Home')
+driver.get('https://www.google.com')
+sleep(5)
+driver.execute_script('/*@visual.init*/', 'My Puppy Test')
+driver.execute_script('/*@visual.snapshot*/', 'Home')
+
 # driver.get('https://www.google.com')
 #
 # # Taking a screenshot on Screener
-# # Syntax dictates the screener.snapshop takes the picture
+# # Syntax dictates the screener.snapshot takes the picture
 # #   and the 'Homepage' part is what the screenshot is called
 # driver.execute_script('/*@visual.snapshot*/', 'Google Homepage')
 #
 # # Finding an element
-# interact = driver.find_element_by_name('q')
+
+interact = driver.find_element_by_xpath('/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
 #
 # # Using the selected element
-# interact.send_keys('chupacabra')
-# interact.submit()
+interact.send_keys('puppies')
+interact.submit()
 # # interact.click()
 #
-# driver.execute_script('/*@visual.snapshot*/', 'Chupacabra Results')
+driver.execute_script('/*@visual.snapshot*/', 'Puppy Results')
 
 # Using Action chains
 # ActionChains(driver).move_to_element(interact).perform()
