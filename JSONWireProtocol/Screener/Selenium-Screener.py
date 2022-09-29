@@ -58,26 +58,25 @@ driver = webdriver.Remote(
 # Navigating to a website
 driver.get('https://www.google.com')
 sleep(5)
+
+# Inititializing Visual Test
 driver.execute_script('/*@visual.init*/', 'My Puppy Test')
+
+# Visual Snapshot No. 1
 driver.execute_script('/*@visual.snapshot*/', 'Home')
 
-# driver.get('https://www.google.com')
-#
-# # Taking a screenshot on Screener
-# # Syntax dictates the screener.snapshot takes the picture
-# #   and the 'Homepage' part is what the screenshot is called
-# driver.execute_script('/*@visual.snapshot*/', 'Google Homepage')
-#
 # # Finding an element
-
 interact = driver.find_element_by_xpath('/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
 #
 # # Using the selected element
 interact.send_keys('puppies')
 interact.submit()
-# # interact.click()
-#
+
+#Snapshot No. 2
 driver.execute_script('/*@visual.snapshot*/', 'Puppy Results')
+
+# Setting Job Status to Passed
+driver.execute_script('sauce:job-result=passed')
 
 # Using Action chains
 # ActionChains(driver).move_to_element(interact).perform()

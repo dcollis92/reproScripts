@@ -52,10 +52,9 @@ sauceParameters = {
     # 'ensureCleanSession': 'true',
     # Sauce Specific Options
     'sauce:options': {
-        'screenResolution':'1400x1050',
-        'tunnelIdentifier': 'qa_proxy',
-        'extendedDebugging': True,
-        'name': 'Snagajob Repro',
+        # 'screenResolution':'1400x1050',
+        # 'extendedDebugging': True,
+        'name': 'Desktop Demo',
         },
 
     # 'capturePerformance': 'true',
@@ -125,7 +124,7 @@ driver.get('https://www.google.com')
 sleep(5)
 
 # Finding an element
-interact = driver.find_element_by_name('q')
+interact = driver.find_element_by_xpath('/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
 
 # Using the selected element
 interact.send_keys('puppies')
