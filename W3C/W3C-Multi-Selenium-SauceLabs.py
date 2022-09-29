@@ -121,13 +121,23 @@ def run_sauce_test():
             command_executor='https://'+os.environ['SAUCE_USERNAME']+':'+os.environ['SAUCE_ACCESS_KEY']+'@ondemand.eu-central-1.saucelabs.com:443/wd/hub',
             desired_capabilities=sauceParameters)
 
+
     ###################################################################
     # Test logic goes here
     ###################################################################
     # Navigating to a website
-    driver.get('https://prendiotwo.onelogin.com/login2/?return=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1cmkiOiJodHRwczovL3ByZW5kaW90d28ub25lbG9naW4uY29tLyIsImF1ZCI6IkFDQ0VTUyIsImV4cCI6MTYwODMxNjE0MCwicGFyYW1zIjp7fSwiaXNzIjoiTU9OT1JBSUwiLCJtZXRob2QiOiJnZXQifQ.y1V-FsSworeT3wuSg3K3bVFSR6NXf0LmxHJS5w34vUk#app=')
-    # driver.get('https://www.google.com')
+    driver.get('https://www.google.com')
     sleep(5)
+
+    # Finding an element
+    interact = driver.find_element_by_xpath('/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input')
+
+    # Using the selected element
+    interact.send_keys('puppies')
+    interact.submit()
+
+    sleep(5)
+
     # Finding an element
     # interact = driver.find_element_by_name('q')
     #
